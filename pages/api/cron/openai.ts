@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { kv } from '@vercel/kv'
+import OpenAI from 'openai';
 
 export const config = {
   runtime: 'edge',
@@ -16,14 +17,16 @@ export default async function handler(req: NextRequest) {
 }
 
 async function update(interval: string) {
-  const topstories = await fetch(
-    'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty'
-  ).then((res) => res.json())
+  const client = new OpenAI({
+      apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
+  });
 
-  const response = await kv.set(interval, {
-    fetchedAt: Date.now(),
-    id: topstories[0],
-  })
+  const chatCompletion = await client.chat.completions.create({
+      messages: [{ role: 'user', content: 'Say this is a test' }],
+      model: 'gpt-3.5-turbo',
+  });
 
-  return response
+  console.log(`LLM response${chatCompletion.choices[0].message.content}`)
+
+  return new Response(`${chatCompletion.choices[0].message.content}`);
 }

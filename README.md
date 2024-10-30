@@ -1,52 +1,37 @@
----
-name: Vercel Cron Job Example
-slug: vercel-cron
-description: A Next.js app that uses Vercel Cron Jobs to update data at different intervals.
-framework: Next.js
-useCase:
-  - Cron
-  - Edge Functions
-css: Tailwind
-database: Vercel KV
-deployUrl: https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png&stores=%5B%7B"type"%3A"kv"%7D%5D
-demoUrl: https://cron-template.vercel.app/
-relatedTemplates:
-  - hacker-news-slack-bot
-  - cron-og
----
+# arXiv Sentinel 🤖
+This is an LLM Agent system, which can be deployed in a [Vercel](https://vercel.com/) serverless function. It can scan arXiv, summarizes papers, and sends you report emails.
 
-# Vercel Cron Job Example
 
-A Next.js app that uses [Vercel Cron Jobs](https://vercel.com/docs/cron-jobs) to update data at different intervals.
-
-## Demo
-
-https://cron-template.vercel.app/
-
-## How to Use
-
-You can choose from one of the following two methods to use this repository:
-
-### One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=examples-repo):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fsolutions%2Fcron&project-name=cron&repository-name=cron&demo-title=Vercel%20Cron%20Job%20Example&demo-description=A%20Next.js%20app%20that%20uses%20Vercel%20Cron%20Jobs%20to%20update%20data%20at%20different%20intervals.&demo-url=https%3A%2F%2Fcron-template.vercel.app%2F&demo-image=https%3A%2F%2Fcron-template.vercel.app%2Fthumbnail.png&stores=%5B%7B"type"%3A"kv"%7D%5D)
-
-Don't forget to set the required environment variables that you got from the previous step.
-
-### Clone and Deploy
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
-
-```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/cron cron
+Let LLM agent help you automatically configure this robot!
+```shell
+python tool.py
 ```
 
-Next, run Next.js in development mode:
+## Manual Configuration
+NodeJS Env
+```shell
+nvm install v22.11.0
+nvm use v22.11.0
+```
 
-```bash
+Deploy:
+```shell
+ vercel deploy --prod
+```
+
+Test Locally:
+```shell
+pnpm build
 pnpm dev
+
+curl http://localhost:3000/api/cron/openai
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=examples-repo) ([Documentation](https://nextjs.org/docs/deployment)).
+Env var setup:
+```shell
+vercel env pull
+
+# modify .env.local file
+```
+
+
